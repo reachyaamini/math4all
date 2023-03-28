@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Math Tables</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #007bff;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Elementary Math Education</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="main.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="table.html">tables</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Activities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container my-4">
+      <h1 class="text-center">Math Tables</h1>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">x</th>
+            <th scope="col">1</th>
+            <th scope="col">2</th>
+            <th scope="col">3</th>
+            <th scope="col">4</th>
+            <th scope="col">5</th>
+            <th scope="col">6</th>
+            <th scope="col">7</th>
+            <th scope="col">8</th>
+            <th scope="col">9</th>
+            <th scope="col">10</th>
+            <th scope="col">11</th>
+            <th scope="col">12</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+      function generateTable() {
+        const tableBody = document.getElementById('table-body');
+        for (let i = 1; i <= 20; i++) {
+          const row = document.createElement('tr');
+          const xCell = document.createElement('th');
+          xCell.setAttribute('scope', 'row');
+          xCell.textContent = i;
+          row.appendChild(xCell);
+          for (let j = 1; j <= 12; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = i * j;
+            row.appendChild(cell);
+          }
+          tableBody.appendChild(row);
+        }
+      }
+      generateTable();
+    </script>
+  </body>
+</html>
