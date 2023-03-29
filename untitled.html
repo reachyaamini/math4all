@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Personal Introduction</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- YouTube video embed styling -->
+	<style>
+		.embed-responsive {
+			position: relative;
+			display: block;
+			height: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		.embed-responsive:before {
+			display: block;
+			content: "";
+		}
+		.embed-responsive .embed-responsive-item,
+		.embed-responsive iframe,
+		.embed-responsive embed,
+		.embed-responsive object,
+		.embed-responsive video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			height: 100%;
+			width: 100%;
+			border: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1>My Personal Introduction</h1>
+				<p>Hi, my name is John Smith and I'm a web developer. I've been working in the industry for 5 years and have experience with HTML, CSS, JavaScript, and various frameworks like Bootstrap and jQuery.</p>
+				<div class="embed-responsive embed-responsive-16by9">
+  					<iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=cV542dRK3uk"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery and Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
