@@ -1,100 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Math Tables</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <style>
-      table {
-        border-collapse: collapse;
+<head>
+  <title>Math Tables</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Elementary Math Education</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="table.html">Tables</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stories.html">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="container my-4">
+    <h1 class="text-center">Math Tables</h1>
+    <form id="tableForm">
+      <div class="form-group">
+        <label for="num_cols">Number of columns:</label>
+        <input type="number" class="form-control" id="num_cols" placeholder="Enter a columns">
+        <label for="num_rows">Number of rows:</label>
+        <input type="number" class="form-control" id="num_rows" placeholder="Enter a rows">
+      </div>
+      <button type="button" class="btn btn-primary" onclick="generateTable()">Generate Table</button>
+    </form>
+    <table class="table table-bordered">
+      <thead id="table-header">
+        <!-- The header row will be generated here -->
+      </thead>
+      <tbody id="table-body">
+        <!-- The body rows will be generated here -->
+      </tbody>
+    </table>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    function generateTable() {
+      generateTableHeader();
+      generateTableBody();
+    }
+
+    function generateTableHeader() {
+      const tableHeader = document.getElementById('table-header');
+      const inputNumber = parseInt(document.getElementById('num_cols').value, 10);
+
+      // Clear existing header row
+      tableHeader.innerHTML = '';
+
+      // Generate the header row
+      const headerRow = document.createElement('tr');
+      const headerXCell = document.createElement('th');
+      headerXCell.setAttribute('scope', 'col');
+      headerXCell.textContent = 'x';
+      headerRow.appendChild(headerXCell);
+
+      for (let i = 1; i <= inputNumber; i++) {
+        const headerCell = document.createElement('th');
+        headerCell.setAttribute('scope', 'col');
+        headerCell.textContent = i;
+        headerRow.appendChild(headerCell);
       }
-      th, td {
-        padding: 10px;
-        text-align: center;
-      }
-      th {
-        background-color: #007bff;
-        color: #fff;
-      }
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Elementary Math Education</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="table.html">Tables</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="stories.html">Stories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <div class="container my-4">
-      <h1 class="text-center">Math Tables</h1>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">x</th>
-            <th scope="col">1</th>
-            <th scope="col">2</th>
-            <th scope="col">3</th>
-            <th scope="col">4</th>
-            <th scope="col">5</th>
-            <th scope="col">6</th>
-            <th scope="col">7</th>
-            <th scope="col">8</th>
-            <th scope="col">9</th>
-            <th scope="col">10</th>
-            <th scope="col">11</th>
-            <th scope="col">12</th>
-          </tr>
-        </thead>
-        <tbody id="table-body">
-        </tbody>
-      </table>
-    </div>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- Custom JS -->
-    <script>
-      function generateTable() {
-        const tableBody = document.getElementById('table-body');
-        for (let i = 1; i <= 20; i++) {
-          const row = document.createElement('tr');
-          const xCell = document.createElement('th');
-          xCell.setAttribute('scope', 'row');
-          xCell.textContent = i;
-          row.appendChild(xCell);
-          for (let j = 1; j <= 12; j++) {
-            const cell = document.createElement('td');
-            cell.textContent = i * j;
-            row.appendChild(cell);
-          }
-          tableBody.appendChild(row);
+
+      tableHeader.appendChild(headerRow);
+    }
+
+    function generateTableBody() {
+      const tableBody = document.getElementById('table-body');
+      const cols = parseInt(document.getElementById('num_cols').value, 10);
+      const rows = parseInt(document.getElementById('num_rows').value, 10);
+
+      // Clear existing body rows
+      tableBody.innerHTML = '';
+
+      // Generate the body rows
+      for (let i = 1; i <= rows; i++) {
+        const row = document.createElement('tr');
+        const xCell = document.createElement('th');
+        xCell.setAttribute('scope', 'row');
+        xCell.textContent = i;
+        row.appendChild(xCell);
+        for (let j = 1; j <= cols; j++) {
+          const cell = document.createElement('td');
+          cell.textContent = i * j;
+          row.appendChild(cell);
         }
+        tableBody.appendChild(row);
       }
-      generateTable();
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>
