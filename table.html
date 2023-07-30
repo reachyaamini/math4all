@@ -51,15 +51,22 @@
   </header>
   <div class="container my-4">
     <h1 class="text-center">Math Tables</h1>
+
     <form id="tableForm">
-      <div class="form-group">
-        <label for="num_cols">Number of columns:</label>
-        <input type="number" class="form-control" id="num_cols" placeholder="Enter a columns">
-        <label for="num_rows">Number of rows:</label>
-        <input type="number" class="form-control" id="num_rows" placeholder="Enter a rows">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="num_cols">Number of columns:</label>
+          <input type="number" class="form-control" id="num_cols" placeholder="Enter a number of columns (1 - 25)">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="num_rows">Number of rows:</label>
+          <input type="number" class="form-control" id="num_rows" placeholder="Enter a number of rows (1 - 25)">
+        </div>
       </div>
       <button type="button" class="btn btn-primary" onclick="generateTable()">Generate Table</button>
     </form>
+
+    <p/>
     <table class="table table-bordered">
       <thead id="table-header">
         <!-- The header row will be generated here -->
@@ -75,16 +82,22 @@
   <!-- Custom JS -->
   <script>
     function generateTable() {
-      generateTableHeader();
-      generateTableBody();
-    }
-
-    function generateTableHeader() {
       const tableHeader = document.getElementById('table-header');
-      const inputNumber = parseInt(document.getElementById('num_cols').value, 10);
+      const tableBody = document.getElementById('table-body');
+      const numColsInput = document.getElementById('num_cols');
+      const numRowsInput = document.getElementById('num_rows');
+      const numCols = parseInt(numColsInput.value, 10);
+      const numRows = parseInt(numRowsInput.value, 10);
 
-      // Clear existing header row
+      // Clear existing header and body rows
       tableHeader.innerHTML = '';
+      tableBody.innerHTML = '';
+
+      // Check if inputs are valid positive integers
+      if (isNaN(numCols) || isNaN(numRows) || numCols <= 0 || numRows <= 0 || numCols > 25 || numRows > 25) {
+        alert('Common on. Don\'t fool around. Valid numbers are 1- 25.');
+        return;
+      }
 
       // Generate the header row
       const headerRow = document.createElement('tr');
@@ -93,7 +106,7 @@
       headerXCell.textContent = 'x';
       headerRow.appendChild(headerXCell);
 
-      for (let i = 1; i <= inputNumber; i++) {
+      for (let i = 1; i <= numCols; i++) {
         const headerCell = document.createElement('th');
         headerCell.setAttribute('scope', 'col');
         headerCell.textContent = i;
@@ -101,24 +114,15 @@
       }
 
       tableHeader.appendChild(headerRow);
-    }
-
-    function generateTableBody() {
-      const tableBody = document.getElementById('table-body');
-      const cols = parseInt(document.getElementById('num_cols').value, 10);
-      const rows = parseInt(document.getElementById('num_rows').value, 10);
-
-      // Clear existing body rows
-      tableBody.innerHTML = '';
 
       // Generate the body rows
-      for (let i = 1; i <= rows; i++) {
+      for (let i = 1; i <= numRows; i++) {
         const row = document.createElement('tr');
         const xCell = document.createElement('th');
         xCell.setAttribute('scope', 'row');
         xCell.textContent = i;
         row.appendChild(xCell);
-        for (let j = 1; j <= cols; j++) {
+        for (let j = 1; j <= numCols; j++) {
           const cell = document.createElement('td');
           cell.textContent = i * j;
           row.appendChild(cell);
