@@ -109,7 +109,17 @@
       for (let i = 1; i <= numCols; i++) {
         const headerCell = document.createElement('th');
         headerCell.setAttribute('scope', 'col');
-        headerCell.textContent = i;
+        // Create a clickable link using an anchor element
+        const link = document.createElement('a');
+        link.href = '#'; // Replace with your desired link or use 'javascript:void(0);' for no action
+        link.style="color:#ffffff;"
+        link.textContent = i;
+        link.addEventListener('click', function() {
+          // Call your JavaScript method here when the link is clicked
+          textToVoice(i, numRows);
+        });
+
+        headerCell.appendChild(link);
         headerRow.appendChild(headerCell);
       }
 
@@ -130,6 +140,33 @@
         tableBody.appendChild(row);
       }
     }
+    // Example JavaScript method that will be called when the link is clicked
+    function textToVoice(columnNumber, numRows) {
+      // alert(`You clicked on the link for column ${columnNumber}.`);
+      // Add your custom logic here
+      let t1 = ''
+      for (let ik = 1; ik <= numRows; ik++) {
+        const res = columnNumber * ik
+        t1 = t1 + columnNumber + ' times ' +  ik + ' is ' + res + ', '
+      }
+      alert(t1)
+      speakText(t1)
+    }
+
+    // pass the text
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        // Speech Synthesis supported
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        synth.speak(utterance);
+      } else {
+        // Speech Synthesis not supported
+        alert('Sorry, your browser does not support text-to-speech.');
+      }
+    }
+
+
   </script>
 </body>
 </html>
